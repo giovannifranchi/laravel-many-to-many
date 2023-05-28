@@ -27,7 +27,7 @@
                         <td>
                             <div class="d-flex gap-2">
                                 <a href="{{route('admin.types.show', $type)}}" class="btn btn-info">Details</a>
-                                <a href="" class="btn btn-warning">Edit</a>
+                                <a href="{{route('admin.types.edit', $type)}}" class="btn btn-warning">Edit</a>
                                 <button class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#modal{{ $type->id }}">Delete</button>
                             </div>
