@@ -39,7 +39,7 @@
 
                     <li>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{$technology->id}}" id="{{$technology->name}}" name="technologies[]" >
+                            <input class="form-check-input" type="checkbox" value="{{$technology->id}}" id="{{$technology->name}}" name="technologies[]" @checked(in_array($technology->id, old('technologies', [])))>
                             <label class="form-check-label" for="{{$technology->name}}">
                                 {{$technology->name}}
                             </label>
