@@ -27,9 +27,29 @@
             <select class="form-select w-50" id="types" name="type_id">
                 <option selected>Select a Type</option>
                 @foreach ($types as $type)
-                <option value="{{$type->id}}">{{$type->name}}</option>
+                    <option value="{{ $type->id }}">{{ $type->name }}</option>
                 @endforeach
             </select>
+
+
+            <div class="tech my-4">
+                <h3 class="fw-light">Technologies</h3>
+                <ul class="m-0 p-0 list-unstyled d-flex gap-3">
+                    @foreach ($technologies as $technology)
+
+                    <li>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{$technology->id}}" id="{{$technology->name}}" name="technologies[]" >
+                            <label class="form-check-label" for="{{$technology->name}}">
+                                {{$technology->name}}
+                            </label>
+                        </div>
+                    </li>
+                        
+                    @endforeach
+                </ul>
+            </div>
+
 
 
 
