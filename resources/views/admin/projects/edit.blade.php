@@ -33,18 +33,57 @@
 
             <label for="types" class="form-label">Types</label>
             <select class="form-select w-50" id="types" name="type_id">
-                <option @selected(!$project->type_id) >Select a Type</option>
+                <option @selected(!$project->type_id)>Select a Type</option>
                 @foreach ($types as $type)
-                <option value="{{$type->id}}" @selected($type->id == old('type_id', $project->type_id)) >{{$type->name}}</option>
+                    <option value="{{ $type->id }}" @selected($type->id == old('type_id', $project->type_id))>{{ $type->name }}</option>
                 @endforeach
             </select>
+
+
+            @if($errors->any())
+            <div class="tech my-4">
+                <h3 class="fw-light">Technologies</h3>
+                <ul class="m-0 p-0 list-unstyled d-flex gap-3">
+                    @foreach ($technologies as $technology)
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{ $technology->id }}"
+                                    id="{{ $technology->name }}" name="technologies[]" @checked(in_array($technology->id, old('technologies', [])))>
+                                <label class="form-check-label" for="{{ $technology->name }}">
+                                    {{ $technology->name }}
+                                </label>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+            @else
+            <div class="tech my-4">
+                <h3 class="fw-light">Technologies</h3>
+                <ul class="m-0 p-0 list-unstyled d-flex gap-3">
+                    @foreach ($technologies as $technology)
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{ $technology->id }}"
+                                    id="{{ $technology->name }}" name="technologies[]" @checked($project->technologies->contains($technology->id))>
+                                <label class="form-check-label" for="{{ $technology->name }}">
+                                    {{ $technology->name }}
+                                </label>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
 
 
 
             <div id="image-wrapper">
                 {{-- fill preview --}}
-                <div class="mb-3  @if(!$project->image) d-none @endif" id="file-wrapper">
-                    <img @if($project->image) src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" @endif id="image-field">
+                <div class="mb-3  @if (!$project->image) d-none @endif" id="file-wrapper">
+                    <img @if ($project->image) src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" @endif
+                        id="image-field">
                 </div>
                 {{-- fill preview --}}
 
