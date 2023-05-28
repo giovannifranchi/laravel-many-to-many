@@ -6,6 +6,16 @@
         <h3 class="mb-3">Title: {{$project->title}}</h3>
         <h3 class="mb-3">Slug: {{$project->slug}}</h3>
         <h3 class="mb-3">Type: {{$project->type?->name ? $project->type->name : 'unknown'}}</h3>
+        <h3 class="mb-3">Technologies:
+            @if (count($project->technologies) > 0)
+            @foreach ($project->technologies as $technology)
+            {{$technology->name}}
+                
+            @endforeach
+            @else
+            unknown
+            @endif 
+        </h3>
         <h3 class="mb-3">Summary:</h3>
         <p>{{$project->summary}}</p>
         <h3 class="mb-3">Status: </h3>
